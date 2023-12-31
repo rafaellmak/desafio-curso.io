@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Partidas Ranqueadas</title>
+  <style>
+ 
+
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 20px;
+      text-align: center;
+      background-color: #3498db; /* Azul */
+      color: white; /* Texto em branco */
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 60%; /* Reduzir a largura da caixa de entrada para 60% */
+      padding: 8px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 2px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    p {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+    
+
+<label for="vitorias">Quantidade de vitórias:</label>
+<input type="number" id="vitorias" min="0">
+
+<label for="derrotas">Quantidade de derrotas:</label>
+<input type="number" id="derrotas" min="0">
+
+<button onclick="calcularNivel()">Calcular Nível</button>
+
+<!-- Elemento para exibir resultados -->
+<p id="resultado"></p>
+
+<script>
+function calcularNivel() {
+  // Obtém os valores dos inputs
+  var vitorias = parseInt(document.getElementById("vitorias").value);
+  var derrotas = parseInt(document.getElementById("derrotas").value);
+
+  // Calcula o saldo de Rankeadas (vitórias - derrotas)
+  const saldoVitorias = vitorias - derrotas;
+
+  // Utiliza a estrutura de decisão switch case
+  let nivel;
+
+  switch (true) {
+    case vitorias < 10:
+      nivel = "Ferro";
+      break;
+    case vitorias >= 11 && vitorias <= 20:
+      nivel = "Bronze";
+      break;
+    case vitorias >= 21 && vitorias <= 50:
+      nivel = "Prata";
+      break;
+    case vitorias >= 51 && vitorias <= 80:
+      nivel = "Ouro";
+      break;
+    case vitorias >= 81 && vitorias <= 90:
+      nivel = "Diamante";
+      break;
+    case vitorias >= 91 && vitorias <= 100:
+      nivel = "Lendário";
+      break;
+    case vitorias >= 101:
+      nivel = "Imortal";
+      break;
+    default:
+      nivel = "Nível não determinado";
+  }
+
+  // Exibe o resultado na página
+  document.getElementById("resultado").innerText = `O Herói tem saldo de ${saldoVitorias} está no nível de ${nivel}`;
+}
+</script>
+
+</body>
+</html>
